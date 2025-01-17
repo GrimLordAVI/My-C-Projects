@@ -1,0 +1,119 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+    int currency,guess,total,game,bet_Amonunt;
+    char bet;
+    currency = 10000;
+    printf("\t\t\t\t\t\t\t\t\t\t\t Welcome to My CASINO\n");
+    printf("\t\t\t\t\t\t\t\t\t\t\t Your MONEY :- 10,000\n");
+    printf("\tDO YOU WANT TO GAMBLE(Y/N):- ");
+    scanf(" %c",&bet);
+    if(bet == 'y' || bet == 'Y'){
+        printf("\tWELL THEN LETS START\n\n");
+    }
+    else{
+        printf("\tI DIDNT GET U..!!! RESTART TO PLAY\n");
+        return 0;
+    }
+    printf("\tEnter the amount u want to BET:- ");
+    scanf("%d",&bet_Amonunt);
+    if(bet_Amonunt > 0 && bet_Amonunt<=10000){
+        printf("\tOK\n");
+    }
+    else{
+        printf("INVALID ENTRY...!!!");
+        return 0;
+    }
+    
+    printf("\tWhat do u want to play:- \n");
+    printf("\t 1. GUESS GAME\n");
+    printf("\t 2. RUSSIAN RULLET \n");
+    printf("\t 3. SLOT MACHINE \n");
+    printf("\tEnter the NUMBER of the game (1,2,3) :- ");
+    scanf("%d",&game);
+    printf("\n");
+    switch(game){
+        case 1 : // Guess game
+            printf("\tWELCOME to the GUESS Game\n");
+            printf("\tThe rules are simple if you guess the number ur BET is doubled in 2 chances\n");
+            printf("\tNOW LETS START...(rember life could be unfair)\n");
+            printf("\tEnter the number (0 - 9):- ");
+                int flag = 1;
+            int x = 0 + rand() % (9 - 0 + 1);
+            for(int i = 1 ; i<=2 ; i++){
+                scanf("\t%d",&guess);
+                if(guess == x){
+                    printf("\t\t\t\t\t\t\t\tYOU WON...\n");
+                    total = bet_Amonunt*2;
+                    currency = currency + total;
+                    printf("\tYour money is incresed to:- %d",currency);
+                    break;
+                }
+                else if(flag == 1){
+                    printf("\tTRY Again\n");
+                    flag = 0;
+                }
+                else{
+                    printf("\tYou lose.. XD\n");
+                    currency = currency - bet_Amonunt;
+                    printf("Your money is now:- %d",currency);
+                    
+                }
+            }
+            break;
+        case 2 : //Russian reulet
+            printf("\tWELCOME to the RUSSIAN RULLET\n");
+            int z = 1 + rand() % (3 - 1 + 1);
+            printf("\tLet me load the GUN for u\n");
+            printf("\tThe GUN is LOADED\n");
+            if(z == 5){
+                printf("You are Shoot..!!");
+                printf("\tYou lose.. XD\n");
+                currency = currency - bet_Amonunt;
+                printf("Your money is now:- %d",currency);
+                
+                
+            }
+            else{
+                printf("\tGreat LUCk. Congrats on living an other day\n");
+                total = bet_Amonunt*2;
+                currency = currency + total;
+                printf("\tYour money is incresed to:- %d",currency);
+                break;
+            }
+            
+            break;
+        case 3 :// slot machine
+            printf("\tWELCOME to the SLOT MACHINE\n");
+            for(int i =1 ; i <= 3 ; i++){
+                int a = 0 + rand() % (5 - 0 + 1);
+                int b = 0 + rand() % (5 - 0 + 1);
+                int c = 0 + rand() % (5 - 0 + 1);
+                printf("\t%d %d %d ",a,b,c);
+                if(a == b && b == c){
+                    printf("\tJACKPOT...!!!");
+                    total = bet_Amonunt*3;
+                    currency = currency + total;
+                    printf("\tYour money is now:- %d\n",currency);
+                    break;
+                }
+                else if(i == 3){
+                     printf("\n\tYou lose.. XD\n");
+                    currency = currency - bet_Amonunt;
+                    printf("\tYour money is now:- %d",currency);
+                }
+                else{
+                    printf("\tSpining Again...!!!\n");
+                }
+            }
+            break;
+        default  :
+            printf("\t INVALID ENTRY\n");
+            return 0;
+    }
+    
+
+    return 0;
+}
